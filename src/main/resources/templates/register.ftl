@@ -17,7 +17,8 @@
     <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assets/vendors/validate/jquery-validate.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/assets/js/messages_zh.min.js"></script>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m99.png"/>
@@ -62,7 +63,59 @@
 
 <script type="text/javascript">
     $(function(){
-       
+    	 $("form").validate({
+    		    rules: { 
+    		      username: {
+    		        required: true,
+    		        minlength: 2
+    		      },
+    		      name:{
+    		    	  required: true,
+    		    	  minlength: 2  
+    		      },
+    		      password: {
+    		        required: true,
+    		        minlength: 5
+    		      },
+    		      password2: {
+    		        required: true,
+    		        minlength: 5,
+    		        equalTo: "#password"
+    		      },
+    		      email: {
+    		        required: true,
+    		        email: true
+    		      },
+
+    		    },
+    		    messages: {
+    		      firstname: "请输入您的名字",
+    		      lastname: "请输入您的姓氏",
+    		      username: {
+    		        required: "请输入用户名",
+    		        minlength: "用户名必需由两个字母组成"
+    		      },
+    		      password: {
+    		        required: "请输入密码",
+    		        minlength: "密码长度不能小于 5 个字母"
+    		      },
+    		      password2: {
+    		        required: "请输入密码",
+    		        minlength: "密码长度不能小于 5 个字母",
+    		        equalTo: "两次密码输入不一致"
+    		      },
+    		      email: "请输入一个正确的邮箱",
+    		     },
+    		     errorPlacement: function(error, element) {
+    		    	 cotent:error[0].innerHTML
+    		    	    );
+					 element.click();
+					 element.closest('div').removeClass('has-success').addClass('has-error');
+    		    	},    		     
+    		     success: function(a,b) {
+    		    	   
+    		    	}
+    		    })      
         
     })
 </script>
